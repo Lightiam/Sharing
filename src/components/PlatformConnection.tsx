@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { initiatePlatformAuth } from "@/services/platformAuth";
 import { getToken } from "@/utils/tokenStorage";
@@ -59,29 +58,41 @@ export function PlatformConnection({ platform, icon, name, description }: Platfo
   };
 
   return (
-    <div className="flex items-center justify-between p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-      <div className="flex items-center space-x-4">
-        <div className="w-12 h-12 flex items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900">
-          {icon}
+    <div className="ud-bg-white dark:ud-bg-dark ud-p-6 ud-rounded-xl ud-shadow-lg ud-transition-all hover:ud-shadow-features-hover">
+      <div className="ud-flex ud-items-center ud-justify-between">
+        <div className="ud-flex ud-items-center ud-space-x-4">
+          <div className="ud-flex ud-items-center ud-justify-center ud-w-[50px] ud-h-[50px] ud-rounded-lg ud-bg-primary ud-bg-opacity-5 ud-text-primary">
+            {icon}
+          </div>
+          <div>
+            <h3 className="ud-text-xl ud-font-bold ud-text-black dark:ud-text-white">
+              {name}
+            </h3>
+            <p className="ud-text-sm ud-text-body-color">
+              {description}
+            </p>
+          </div>
         </div>
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{name}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{description}</p>
-        </div>
+        <button
+          onClick={isConnected ? handleDisconnect : handleConnect}
+          disabled={isConnecting}
+          className={`ud-px-4 ud-py-2 ud-rounded-lg ud-font-medium ud-transition-colors ${
+            isConnecting
+              ? 'ud-opacity-50 ud-cursor-not-allowed'
+              : isConnected
+              ? 'ud-bg-red-100 ud-text-red-600 hover:ud-bg-red-200 dark:ud-bg-red-900/30 dark:ud-text-red-400'
+              : 'ud-bg-primary ud-text-white hover:ud-bg-primary-hover'
+          }`}
+        >
+          {isConnecting ? (
+            "Connecting..."
+          ) : isConnected ? (
+            "Disconnect"
+          ) : (
+            "Connect"
+          )}
+        </button>
       </div>
-      <Button
-        variant={isConnected ? "outline" : "default"}
-        onClick={isConnected ? handleDisconnect : handleConnect}
-        disabled={isConnecting}
-      >
-        {isConnecting ? (
-          "Connecting..."
-        ) : isConnected ? (
-          "Disconnect"
-        ) : (
-          "Connect"
-        )}
-      </Button>
     </div>
   );
 }

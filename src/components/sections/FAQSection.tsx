@@ -1,11 +1,6 @@
 import React from 'react';
 
-interface FAQ {
-  question: string;
-  answer: string;
-}
-
-const faqs: FAQ[] = [
+const faqs = [
   {
     question: "How does Spreadify AI help with content creation?",
     answer: "Spreadify AI uses advanced artificial intelligence to help you create engaging content tailored for each social platform. It analyzes your brand voice, audience engagement patterns, and platform-specific trends to suggest optimized content."
