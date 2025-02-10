@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '../ui/button';
 
 interface PricingTier {
   name: string;
@@ -7,45 +6,57 @@ interface PricingTier {
   popular?: boolean;
   features: string[];
   buttonText: string;
+  description: string;
 }
 
 const pricingTiers: PricingTier[] = [
   {
     name: "Basic",
     price: "$29",
+    description: "Perfect for individuals and small businesses",
     features: [
       "3 Social Media Platforms",
-      "Basic Analytics",
+      "Basic Analytics Dashboard",
       "100 Posts/Month",
-      "Basic Support",
-      "Content Calendar"
+      "Content Calendar",
+      "Basic Support (Email)",
+      "Mobile App Access",
+      "Basic Post Templates"
     ],
-    buttonText: "Get Started"
+    buttonText: "Start Free Trial"
   },
   {
     name: "Pro",
     price: "$79",
     popular: true,
+    description: "Ideal for growing businesses and teams",
     features: [
       "All Social Media Platforms",
-      "Advanced Analytics",
+      "Advanced Analytics & Reports",
       "Unlimited Posts",
-      "Priority Support",
+      "Priority Support (24/7)",
       "AI Content Generation",
-      "Team Collaboration"
+      "Team Collaboration Tools",
+      "Custom Workflows",
+      "Bulk Scheduling",
+      "Advanced Post Templates"
     ],
-    buttonText: "Get Started"
+    buttonText: "Start Free Trial"
   },
   {
     name: "Enterprise",
     price: "Custom",
+    description: "For large organizations with custom needs",
     features: [
-      "Custom Solutions",
-      "Advanced Team Features",
-      "Custom Integrations",
+      "Custom Platform Solutions",
+      "Advanced Team Management",
+      "Custom API Integration",
       "24/7 Dedicated Support",
       "Custom AI Training",
-      "API Access"
+      "Advanced Security Features",
+      "SLA Guarantees",
+      "Onboarding Manager",
+      "Custom Analytics"
     ],
     buttonText: "Contact Sales"
   }
@@ -86,6 +97,12 @@ export default function PricingSection() {
                   {tier.name} Plan
                 </span>
                 
+                <p className={`ud-text-sm ${
+                  tier.popular ? 'ud-text-white/80' : 'ud-text-body-color'
+                } ud-mb-4`}>
+                  {tier.description}
+                </p>
+
                 <h3 className={`ud-font-bold ${
                   tier.popular ? 'ud-text-white' : 'ud-text-black dark:ud-text-white'
                 } ud-text-[40px]`}>
@@ -115,7 +132,7 @@ export default function PricingSection() {
                 </div>
 
                 <div className="ud-pt-8">
-                  <Button 
+                  <button 
                     className={`ud-w-full ud-flex ud-items-center ud-justify-center ud-text-base ud-font-bold ud-p-3 ud-rounded-xl ${
                       tier.popular 
                         ? 'ud-bg-white ud-text-primary hover:ud-bg-white/90'
@@ -123,7 +140,7 @@ export default function PricingSection() {
                     }`}
                   >
                     {tier.buttonText}
-                  </Button>
+                  </button>
                 </div>
               </div>
             </div>
